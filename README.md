@@ -1,5 +1,10 @@
 # GeminiAPIChat
 
+## Requirement
+
+This project requires that you have access to an API key.
+- [Google Api](https://ai.google.dev/)
+
 ## Setup
 
 Create a file named secret.env containting your API Key.
