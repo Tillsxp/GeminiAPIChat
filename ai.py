@@ -9,13 +9,26 @@ api_key=os.getenv("API_KEY")
 client = genai.Client(api_key=api_key)  
 chat = client.chats.create(model="gemini-2.0-flash")
 
-response = chat.send_message_stream(
-    "Explain how AI works in a few words"
-)
+msg = input("Ask a question: ")
+
+response = chat.send_message_stream(msg)
+
+full_response = ""
+
 for chunk in response:
     print(chunk.text, end="")
 
-response = chat.send_message_stream("What did I ask in my previous question?")
-for message in chat.get_history():
-    print(f'role - {message.role}', end =": ")
-    print(message.parts[0].text)
+print(full_response)
+
+print("\n")
+
+second_msg = input("Ask a follow-up(be specific): ")
+
+response = chat.send_message_stream(second_msg)
+
+full_response2 = ""
+
+for chunk in response:
+    full_response2 += chunk.text
+
+print(full_response2)
