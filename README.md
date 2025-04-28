@@ -2,8 +2,21 @@
 
 ## Requirement
 
+To Install depdencies it requires
+- [Python](https://www.python.org/downloads/)
+
 This project requires that you have access to an API key.
 - [Google Api](https://ai.google.dev/)
+
+## Dependencies
+
+```
+pip install python-dotenv
+```
+
+```
+pip install -q -U google-genai
+```
 
 ## Setup
 
