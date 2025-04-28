@@ -2,7 +2,7 @@
 
 ## Requirement
 
-To Install depdencies it requires
+To Install dependencies it requires
 - [Python](https://www.python.org/downloads/)
 
 This project requires that you have access to an API key.
