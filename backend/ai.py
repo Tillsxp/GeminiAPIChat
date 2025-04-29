@@ -1,34 +1,43 @@
+from fastapi import FastAPI, HTTPException
 from google import genai
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
+from pydantic import BaseModel
 
 load_dotenv(dotenv_path="secret.env")
 
 api_key=os.getenv("API_KEY")
 
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"],  
+)
+
 client = genai.Client(api_key=api_key)  
 chat = client.chats.create(model="gemini-2.0-flash")
 
-msg = input("Ask a question: ")
+class Message(BaseModel):
+    message: str
 
-response = chat.send_message_stream(msg)
+#HTTP POST request
+@app.post("/chat")
+async def chat_with_gemini(msg: Message):
+    try:
 
-full_response = ""
+        response = chat.send_message_stream(msg.message)
 
-for chunk in response:
-    print(chunk.text, end="")
+        full_response = ""
 
-print(full_response)
+        for chunk in response:
+            full_response += chunk.text
+            
+        return {"response":full_response}
 
-print("\n")
-
-second_msg = input("Ask a follow-up(be specific): ")
-
-response = chat.send_message_stream(second_msg)
-
-full_response2 = ""
-
-for chunk in response:
-    full_response2 += chunk.text
-
-print(full_response2)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Error communcating with the model")
