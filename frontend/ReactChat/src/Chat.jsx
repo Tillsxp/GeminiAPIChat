@@ -3,7 +3,6 @@ import axios from 'axios';
 import './chat.css';
 
 export default function Chat () {
-    const [response, setResponse] = useState('');
     const [message, setMessage] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
 
