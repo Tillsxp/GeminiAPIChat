@@ -14,10 +14,20 @@ This project requires that you have access to an API key.
 pip install python-dotenv
 ```
 
+Gemini API
 ```
 pip install -q -U google-genai
 ```
 
+FastAPI
+```
+pip install fastapi uvicorn python-dotenv
+```
+
+Run FastAPI
+```
+uvicorn ai:app --reload
+```
 ## Setup
 
 Create a file named secret.env containting your API Key.
