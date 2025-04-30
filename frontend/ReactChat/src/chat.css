@@ -4,15 +4,16 @@
     flex-direction: column;
     align-items: flex-start;
     height: 98vh;
-    background-color:#242629;
     font-family: sans-serif;
     font-size: x-large;
     padding: 1rem;
     margin: 0;
     box-sizing: border-box;
+    background-color:#242629;
 }
 
 .chat-messages{
+    background-color:#242629;
     flex-grow: 1;
     overflow-y: auto;
     list-style-type: none;
@@ -23,6 +24,15 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+    .chat-messages li{
+        margin-bottom: 1rem;
+    }
+    .user-message strong{
+        color: #173bb4;
+    }
+    .bot-message strong{
+        color:#17b458;
+    }
 .chat-input
 {
 margin-bottom: 1rem;

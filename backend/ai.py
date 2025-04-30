@@ -30,14 +30,15 @@ class Message(BaseModel):
 async def chat_with_gemini(msg: Message):
     try:
 
-        response = chat.send_message_stream(msg.message)
-
+        user_prompt = f"Summarize this in under 1000 characters and end with a complete sentence: {msg.message}"
+        response = chat.send_message_stream(user_prompt)
+            
         full_response = ""
 
         for chunk in response:
             full_response += chunk.text
             
-        return {"response":full_response}
+        return {"response":full_response.strip()}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail="Error communcating with the model")

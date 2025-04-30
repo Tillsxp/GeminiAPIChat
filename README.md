@@ -26,7 +26,7 @@ pip install fastapi uvicorn python-dotenv
 
 Run FastAPI
 ```
-uvicorn ai:app --reload
+python -m uvicorn ai:app --reload
 ```
 ## Setup
 
